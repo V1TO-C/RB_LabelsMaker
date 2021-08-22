@@ -18,6 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Color = System.Drawing.Color;
+using ZXing;
+using ZXing.Common;
 
 namespace RB_LabelsMaker
 {
@@ -31,7 +33,7 @@ namespace RB_LabelsMaker
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_40(object sender, RoutedEventArgs e)
         {
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet1 = workbook.CreateSheet("Sheet1");
@@ -65,7 +67,7 @@ namespace RB_LabelsMaker
             ICellStyle fontStyle2 = workbook.CreateCellStyle();
             fontStyle2.SetFont(font2);
 
-
+            //add columns and rows
             int x = 0;
             for (int i = 0; i < 10; i++)
             {
@@ -92,7 +94,7 @@ namespace RB_LabelsMaker
                 }
 
                 IRow row3 = sheet1.CreateRow(x);
-                row3.Height = 1125;
+                row3.Height = 1020;
                 x++;
 
                 for (int j = 0; j < 4; j++)
@@ -101,19 +103,42 @@ namespace RB_LabelsMaker
                 }
             }
 
-            //Generate and add barcode to cells
-            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            System.Drawing.Image img = b.Encode(BarcodeLib.TYPE.EAN13, "038000356216", Color.Black, Color.White, 120, 90);
-            img.Save("C:/Users/vcerm/source/repos/RB_LabelsMaker/Sources/EAN-13.png", System.Drawing.Imaging.ImageFormat.Png);
-            byte[] data = File.ReadAllBytes("C:/Users/vcerm/source/repos/RB_LabelsMaker/Sources/EAN-13.png");
+            //Generate barcode           
+            BarcodeWriter writer = new BarcodeWriter()
+            {
+                Format = BarcodeFormat.CODE_128,
+                Options = new EncodingOptions
+                {
+                    Height = 85,
+                    Width = 230,
+                    PureBarcode = false,
+                    Margin = 0,
+                }
+            };
+
+            //"C:/Development/RB_LabelsMaker/Sources/EAN-13.png"
+            var bitmap = writer.Write("987654321234");
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            //add barcode to .xlsx
+            byte[] data = ms.ToArray();
             int pictureIndex = workbook.AddPicture(data, PictureType.JPEG);
             ICreationHelper helper = workbook.GetCreationHelper();
-            IDrawing drawing = sheet1.CreateDrawingPatriarch();
-            IClientAnchor anchor = helper.CreateClientAnchor();
-            anchor.Col1 = 2;
-            anchor.Row1 = 3;
-            IPicture picture = drawing.CreatePicture(anchor, pictureIndex);
-            picture.Resize();
+
+            for (int r = 2; r < 31; r += 3)
+            {
+                for (int c = 0; c < 4; c++)
+                {
+                    IDrawing drawing = sheet1.CreateDrawingPatriarch();
+                    IClientAnchor anchor = helper.CreateClientAnchor();
+                    anchor.Col1 = c;
+                    anchor.Row1 = r;
+                    IPicture picture = drawing.CreatePicture(anchor, pictureIndex);
+                    picture.Resize();
+                }
+            }
+
 
             //the following three statements are required only for HSSF
             //sheet1.FitToPage = (true);
@@ -122,15 +147,17 @@ namespace RB_LabelsMaker
             //printSetup.FitWidth = ((short)1);
 
 
+            SaveManager.SaveSheet(workbook);
+        }
 
-            FileStream out1 = new FileStream("C:/Users/vcerm/source/repos/RB_LabelsMaker/Sources/table.xlsx", FileMode.Create);
-            workbook.Write(out1);
-            out1.Close();
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("8");
+        }
 
-
-            
-
-            //MessageBox.Show("wtf");
+        private void Button_Click_5x5(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("5x5");
         }
     }
 }
