@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RB_LabelsMaker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="40ks" Click="Button_Click_40" Width="150" Margin="325,349,325,35"/>
-        <Button Content="8ks" Click="Button_Click_8" Width="150" Margin="114,349,536,35"/>
-        <Button Content="5x5ks" Click="Button_Click_5x5" Width="150" Margin="536,349,114,35"/>
-    </Grid>
+        Title="Generátor Štítků" Height="450" Width="800">
+    <StackPanel Background="SkyBlue">
+        <Grid>
+            <TextBlock HorizontalAlignment="Center" Margin="0,31,0,0" Text="ROBIN-BABY" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontWeight="ExtraBold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="114,91,0,0" Text="Art.Nr., případně BW číslo." TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <TextBox Name="ArticleNum" Margin="114,112,453,0" Text="Art.Nr." TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="25" FontSize="16" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="114,156,0,0" Text="Popis produktu." TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <TextBox Name="ProductInfo" Margin="114,177,453,0" Text="Stillkissen" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="35" FontSize="16" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="114,215,0,0" Text="EAN-13 kod" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <TextBox Name="EANcode" Margin="114,236,453,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="12" FontSize="16" FontWeight="Bold"/>
+            <Button Content="Ulož 40ks" Click="Button_Click_40" Width="150" Margin="325,349,325,35" FontSize="16" FontWeight="Bold" Background="DimGray"/>
+            <Button Content="Uložit 8ks" Click="Button_Click_8" Width="150" Margin="114,349,536,35" FontSize="16" FontWeight="Bold" Background="DimGray"/>
+            <Button Content="Uložit 5x5ks" Click="Button_Click_5x5" Width="150" Margin="536,349,114,35" FontSize="16" FontWeight="Bold" Background="DimGray"/>
+
+        </Grid>
+    </StackPanel>
 </Window>

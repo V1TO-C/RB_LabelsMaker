@@ -35,6 +35,10 @@ namespace RB_LabelsMaker
 
         private void Button_Click_40(object sender, RoutedEventArgs e)
         {
+            string artNr = ArticleNum.Text;
+            string productInfo = ProductInfo.Text;
+            string codeEAN = EANcode.Text;
+            
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet1 = workbook.CreateSheet("Sheet1");
 
@@ -43,14 +47,13 @@ namespace RB_LabelsMaker
             {
                 sheet1.SetColumnWidth(i, 6850);
             }
-
             sheet1.SetMargin(MarginType.LeftMargin, 0);
             sheet1.SetMargin(MarginType.RightMargin, 0);
             sheet1.SetMargin(MarginType.TopMargin, 0);
             sheet1.SetMargin(MarginType.BottomMargin, 0);
             
 
-            // Create a new font and alter it
+            // Create a new fonts and alter it
             IFont font1 = workbook.CreateFont();
             font1.FontHeightInPoints = 10;
             font1.FontName = "Arial";
@@ -63,8 +66,10 @@ namespace RB_LabelsMaker
 
             // Fonts are set into a style so create a new one to use.
             ICellStyle fontStyle1 = workbook.CreateCellStyle();
+            fontStyle1.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
             fontStyle1.SetFont(font1);
             ICellStyle fontStyle2 = workbook.CreateCellStyle();
+            fontStyle2.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
             fontStyle2.SetFont(font2);
 
             //add columns and rows
@@ -78,7 +83,7 @@ namespace RB_LabelsMaker
                 for (int j = 0; j < 4; j++)
                 {
                     ICell cell = row1.CreateCell(j);
-                    cell.SetCellValue("Art. Nr. 407-80");
+                    cell.SetCellValue(artNr);
                     cell.CellStyle = fontStyle1;
                 }
 
@@ -89,7 +94,7 @@ namespace RB_LabelsMaker
                 for (int j = 0; j < 4; j++)
                 {
                     ICell cell = row2.CreateCell(j);
-                    cell.SetCellValue("Stillkissen190cm Tierchentürkis");
+                    cell.SetCellValue(productInfo);
                     cell.CellStyle = fontStyle2;
                 }
 
@@ -104,7 +109,7 @@ namespace RB_LabelsMaker
             }
 
             //Generate barcode           
-            MemoryStream ms1 = BarCodeManager.GenerateBarcode("345967803945", 85, 230);
+            MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 85, 230);
 
             //add barcode to .xlsx
             BarCodeManager.InsertBarcodeToSheet(31, 4, 1, workbook, sheet1, ms1);
