@@ -104,48 +104,16 @@ namespace RB_LabelsMaker
             }
 
             //Generate barcode           
-            BarcodeWriter writer = new BarcodeWriter()
-            {
-                Format = BarcodeFormat.CODE_128,
-                Options = new EncodingOptions
-                {
-                    Height = 85,
-                    Width = 230,
-                    PureBarcode = false,
-                    Margin = 0,
-                }
-            };
-
-            //"C:/Development/RB_LabelsMaker/Sources/EAN-13.png"
-            var bitmap = writer.Write("987654321234");
-            MemoryStream ms = new MemoryStream();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            MemoryStream ms1 = BarCodeManager.GenerateBarcode("345967803945", 85, 230);
 
             //add barcode to .xlsx
-            byte[] data = ms.ToArray();
-            int pictureIndex = workbook.AddPicture(data, PictureType.JPEG);
-            ICreationHelper helper = workbook.GetCreationHelper();
-
-            for (int r = 2; r < 31; r += 3)
-            {
-                for (int c = 0; c < 4; c++)
-                {
-                    IDrawing drawing = sheet1.CreateDrawingPatriarch();
-                    IClientAnchor anchor = helper.CreateClientAnchor();
-                    anchor.Col1 = c;
-                    anchor.Row1 = r;
-                    IPicture picture = drawing.CreatePicture(anchor, pictureIndex);
-                    picture.Resize();
-                }
-            }
-
+            BarCodeManager.InsertBarcodeToSheet(31, 4, 1, workbook, sheet1, ms1);
 
             //the following three statements are required only for HSSF
             //sheet1.FitToPage = (true);
             //IPrintSetup printSetup = sheet1.PrintSetup;
             //printSetup.FitHeight = ((short)1);
             //printSetup.FitWidth = ((short)1);
-
 
             SaveManager.SaveSheet(workbook);
         }
