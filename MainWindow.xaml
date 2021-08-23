@@ -16,11 +16,28 @@
             <TextBox Name="ProductInfo" Margin="114,219,453,0" Text="Stillkissen" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="35" FontSize="16" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="114,257,0,0" Text="EAN-13 kod" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <TextBox Name="EANcode" Margin="114,278,453,0" Text="9120110460554" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="13" FontSize="16" FontWeight="Bold"/>
-            <Button HorizontalAlignment="Center" Content="Uložit 40ks" Click="Button_Click_40" Width="150" Margin="325,349,325,35" FontSize="16" FontWeight="Bold" Background="LightCoral"/>
-            <Button HorizontalAlignment="Center" Content="Uložit 8ks" Click="Button_Click_8" Width="150" Margin="114,349,536,35" FontSize="16" FontWeight="Bold" Background="CornflowerBlue"/>
-            <Button HorizontalAlignment="Center" Content="Uložit 5x5ks" Click="Button_Click_5x5" Width="150" Margin="536,349,114,35" FontSize="16" FontWeight="Bold" Background="CornflowerBlue"/>
-            <TextBlock HorizontalAlignment="Left" Margin="695,311,0,0" Text="Verze 0.91" TextWrapping="Wrap" VerticalAlignment="Top"/>
-
+            <Button HorizontalAlignment="Left" Content="Uložit 40ks" Click="Button_Click_save" Width="150" Margin="479,278,0,106" FontSize="16" FontWeight="Bold" Background="LightCoral"/>
+            <TextBlock HorizontalAlignment="Left" Margin="695,311,0,0" Text="Verze 0.9" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <StackPanel Margin="479,153,114,203">
+                <CheckBox Name="cb5x5" Checked="Checked5x5" Content="Formát 5x5ks" FontWeight="Bold"
+                          >
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <CheckBox Name="cb8" Checked="Checked8" Content="Formát 8ks" FontWeight="Bold"
+                          >
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <CheckBox Name="cb40" Checked="Checked40" Content="Formát 40ks" FontWeight="Bold"
+                          >
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+            </StackPanel>
         </Grid>
     </StackPanel>
 </Window>

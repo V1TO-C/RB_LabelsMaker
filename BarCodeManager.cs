@@ -12,7 +12,7 @@ namespace RB_LabelsMaker
     {
         public static MemoryStream GenerateBarcode(string code, int codeHeight, int codeWidth)
         {
-            BarcodeWriter writer = new BarcodeWriter()
+            BarcodeWriter writer = new()
             {
                 Format = BarcodeFormat.EAN_13,
                 Options = new EncodingOptions
@@ -26,7 +26,7 @@ namespace RB_LabelsMaker
             try
             {
                 var bitmap = writer.Write(code);
-                MemoryStream ms = new MemoryStream();
+                MemoryStream ms = new();
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                 return ms;
             }
