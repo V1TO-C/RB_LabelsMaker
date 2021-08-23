@@ -18,8 +18,8 @@ namespace RB_LabelsMaker
 
         private void Button_Click_40(object sender, RoutedEventArgs e)
         {
-            string artNr = ArticleNum.Text;
-            string productInfo = ProductInfo.Text;
+            string artNr = " " + ArticleNum.Text;
+            string productInfo = " " + ProductInfo.Text;
             string codeEAN = EANcode.Text;
             
             IWorkbook workbook = new XSSFWorkbook();
@@ -92,7 +92,7 @@ namespace RB_LabelsMaker
             }
 
             //Generate barcode           
-            MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 90, 240);
+            MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 90, 225);
 
             //add barcode to .xlsx
             BarCodeManager.InsertBarcodeToSheet(31, 4, workbook, sheet1, ms1);
@@ -184,10 +184,10 @@ namespace RB_LabelsMaker
             }
 
             //Generate barcode           
-            MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 90, 240);
+            MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 120, 240);
 
             //add barcode to .xlsx
-            BarCodeManager.InsertBarcodeToSheet(13, 2, 1.005, 0.7, workbook, sheet1, ms1);
+            BarCodeManager.InsertBarcodeToSheet(13, 2, 1, 0.7, workbook, sheet1, ms1);
 
             if (ms1 != null)
             {

@@ -11,7 +11,7 @@
             <TextBlock HorizontalAlignment="Center" Margin="0,31,0,0" Text="ROBIN-BABY" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontWeight="ExtraBold"/>
             <TextBlock HorizontalAlignment="Center" Margin="0,71,0,0" Text="Generátor štítků" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="114,133,0,0" Text="Art.Nr., případně BW číslo." TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-            <TextBox Name="ArticleNum" Margin="114,154,453,0" Text="Art.Nr." TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="25" FontSize="16" FontWeight="Bold"/>
+            <TextBox Name="ArticleNum" Margin="114,154,453,0" Text="Art.Nr." TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="27" FontSize="16" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="114,198,0,0" Text="Popis produktu." TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <TextBox Name="ProductInfo" Margin="114,219,453,0" Text="Stillkissen" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="35" FontSize="16" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="114,257,0,0" Text="EAN-13 kod" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>

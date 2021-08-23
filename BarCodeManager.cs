@@ -1,4 +1,5 @@
 ﻿using NPOI.SS.UserModel;
+using NPOI.Util;
 using System.IO;
 using System.Windows;
 using ZXing;
@@ -32,7 +33,7 @@ namespace RB_LabelsMaker
             catch (System.Exception)
             {
 
-                MessageBox.Show("dff");
+                MessageBox.Show("Zkontroluj EAN kód, není správně vyplněný.");
                 return null;
             }
         }
@@ -58,6 +59,7 @@ namespace RB_LabelsMaker
                         IClientAnchor anchor = helper.CreateClientAnchor();
                         anchor.Col1 = c;
                         anchor.Row1 = r;
+                        anchor.Dx1 = (Units.ToEMU(2));
                         IPicture picture = drawing.CreatePicture(anchor, pictureIndex);
                         picture.Resize();
                     }
@@ -86,6 +88,7 @@ namespace RB_LabelsMaker
                         IClientAnchor anchor = helper.CreateClientAnchor();
                         anchor.Col1 = c;
                         anchor.Row1 = r;
+                        anchor.Dx1 = (Units.ToEMU(10));
                         IPicture picture = drawing.CreatePicture(anchor, pictureIndex);
                         picture.Resize(resizeX, resizeY);
                     }
