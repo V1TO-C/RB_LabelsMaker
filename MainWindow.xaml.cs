@@ -33,6 +33,10 @@ namespace RB_LabelsMaker
 
             if (cb8.IsChecked == true)
             {
+                //Set max characters of textboxes
+                ArticleNum.MaxLength = 27;
+                ProductInfo.MaxLength = 35;
+
                 // Create a new fonts
                 IFont font1 = workbook.CreateFont();
                 font1.FontHeightInPoints = 10;
@@ -99,15 +103,18 @@ namespace RB_LabelsMaker
             //add barcode to .xlsx
             BarCodeManager.InsertBarcodeToSheet(31, 4, 1, 1, 5, 2, workbook, sheet1, ms1);
 
-                //the following three statements are required only for HSSF
-                //sheet1.FitToPage = (true);
-                IPrintSetup printSetup = sheet1.PrintSetup;
-                printSetup.PaperSize = ((short)PaperSize.A4_Small);
-                //printSetup.FitHeight = ((short)1);
-                //printSetup.FitWidth = ((short)1);
+                if (ms1 == null)
+                {
+                    //the following three statements are required only for HSSF
+                    //sheet1.FitToPage = (true);
+                    IPrintSetup printSetup = sheet1.PrintSetup;
+                    printSetup.PaperSize = ((short)PaperSize.A4_Small);
+                    //printSetup.FitHeight = ((short)1);
+                    //printSetup.FitWidth = ((short)1);
 
-                //save file
-                SaveManager.SaveSheet(artNr, workbook);
+                    //save file
+                    SaveManager.SaveSheet(artNr, workbook);
+                }     
             }
             else if (cb40.IsChecked == true)
             {
@@ -203,8 +210,8 @@ namespace RB_LabelsMaker
             }
         }
 
-        private void Checked5x5(object sender, RoutedEventArgs e) { cb8.IsChecked = false; cb40.IsChecked = false; }
-        private void Checked8(object sender, RoutedEventArgs e) { cb5x5.IsChecked = false; cb40.IsChecked = false; }
-        private void Checked40(object sender, RoutedEventArgs e) {cb8.IsChecked = false; cb5x5.IsChecked = false; }
+        private void Checked5x5(object sender, RoutedEventArgs e) { cb8.IsChecked = false; cb40.IsChecked = false; ArticleNum.MaxLength = 27; ProductInfo.MaxLength = 35; }
+        private void Checked8(object sender, RoutedEventArgs e) { cb5x5.IsChecked = false; cb40.IsChecked = false; ArticleNum.MaxLength = 3; ProductInfo.MaxLength = 35; }
+        private void Checked40(object sender, RoutedEventArgs e) {cb8.IsChecked = false; cb5x5.IsChecked = false; ArticleNum.MaxLength = 27; ProductInfo.MaxLength = 35; }
     }
 }
