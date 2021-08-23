@@ -20,7 +20,16 @@
             <Button HorizontalAlignment="Center" Content="Uložit 8ks" Click="Button_Click_8" Width="150" Margin="114,349,536,35" FontSize="16" FontWeight="Bold" Background="CornflowerBlue"/>
             <Button HorizontalAlignment="Center" Content="Uložit 5x5ks" Click="Button_Click_5x5" Width="150" Margin="536,349,114,35" FontSize="16" FontWeight="Bold" Background="CornflowerBlue"/>
             <TextBlock HorizontalAlignment="Left" Margin="695,311,0,0" Text="Verze 0.9" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <StackPanel Margin="512,156,81,200">
+                <CheckBox Name="cb5x5" Content="5x5ks" FontWeight="Bold" Width="139"
+                          >
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
 
+
+            </StackPanel>
         </Grid>
     </StackPanel>
 </Window>

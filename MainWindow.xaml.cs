@@ -202,6 +202,10 @@ namespace RB_LabelsMaker
 
         private void Button_Click_5x5(object sender, RoutedEventArgs e)
         {
+            if (cb5x5.IsChecked == true)
+            {
+                MessageBox.Show("checkbox 5x5");
+            }
             MessageBox.Show("Zatím nefunguje.");
         }
     }
