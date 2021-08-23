@@ -67,7 +67,7 @@ namespace RB_LabelsMaker
             }
         }
 
-        public static void InsertBarcodeToSheet(int rowNum, int colNum, double resizeX, double resizeY, IWorkbook wb, ISheet sheet, MemoryStream ms)
+        public static void InsertBarcodeToSheet(int rowNum, int colNum, double resizeX, double resizeY, double marginX, double marginY, IWorkbook wb, ISheet sheet, MemoryStream ms)
         {
             if (ms == null)
             {
@@ -88,7 +88,8 @@ namespace RB_LabelsMaker
                         IClientAnchor anchor = helper.CreateClientAnchor();
                         anchor.Col1 = c;
                         anchor.Row1 = r;
-                        anchor.Dx1 = (Units.ToEMU(10));
+                        anchor.Dx1 = (Units.ToEMU(marginX));
+                        anchor.Dy1 = (Units.ToEMU(marginY));
                         IPicture picture = drawing.CreatePicture(anchor, pictureIndex);
                         picture.Resize(resizeX, resizeY);
                     }

@@ -95,7 +95,7 @@ namespace RB_LabelsMaker
             MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 90, 225);
 
             //add barcode to .xlsx
-            BarCodeManager.InsertBarcodeToSheet(31, 4, workbook, sheet1, ms1);
+            BarCodeManager.InsertBarcodeToSheet(31, 4, 1, 1, 5, 2, workbook, sheet1, ms1);
 
             //the following three statements are required only for HSSF
             //sheet1.FitToPage = (true);
@@ -187,7 +187,7 @@ namespace RB_LabelsMaker
             MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 120, 240);
 
             //add barcode to .xlsx
-            BarCodeManager.InsertBarcodeToSheet(13, 2, 1, 0.7, workbook, sheet1, ms1);
+            BarCodeManager.InsertBarcodeToSheet(13, 2, 1, 0.8, 10, 10, workbook, sheet1, ms1);
 
             if (ms1 != null)
             {
