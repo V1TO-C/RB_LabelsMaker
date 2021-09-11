@@ -21,7 +21,7 @@ namespace RB_LabelsMaker
             string artNr = " " + ArticleNum.Text;
             string productInfo = " " + ProductInfo.Text;
             string codeEAN = EANcode.Text;
-            
+
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet1 = workbook.CreateSheet("Sheet1");
 
@@ -31,12 +31,8 @@ namespace RB_LabelsMaker
             sheet1.SetMargin(MarginType.TopMargin, 0.1);
             sheet1.SetMargin(MarginType.BottomMargin, 0);
 
-            if (cb8.IsChecked == true)
+            if (cb40.IsChecked == true)
             {
-                //Set max characters of textboxes
-                ArticleNum.MaxLength = 27;
-                ProductInfo.MaxLength = 35;
-
                 // Create a new fonts
                 IFont font1 = workbook.CreateFont();
                 font1.FontHeightInPoints = 10;
@@ -58,7 +54,7 @@ namespace RB_LabelsMaker
                 // set column width
                 for (int i = 0; i < 4; i++)
                 {
-                    sheet1.SetColumnWidth(i, 6700);
+                    sheet1.SetColumnWidth(i, 6770);
                 }
 
                 //add columns and rows
@@ -66,7 +62,7 @@ namespace RB_LabelsMaker
                 for (int i = 0; i < 10; i++)
                 {
                     IRow row1 = sheet1.CreateRow(x);
-                    row1.Height = 280;
+                    row1.Height = 305;
                     x++;
 
                     for (int j = 0; j < 4; j++)
@@ -77,7 +73,7 @@ namespace RB_LabelsMaker
                     }
 
                     IRow row2 = sheet1.CreateRow(x);
-                    row2.Height = 250;
+                    row2.Height = 230;
                     x++;
 
                     for (int j = 0; j < 4; j++)
@@ -100,10 +96,10 @@ namespace RB_LabelsMaker
                 //Generate barcode           
                 MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 90, 225);
 
-            //add barcode to .xlsx
-            BarCodeManager.InsertBarcodeToSheet(31, 4, 1, 1, 5, 2, workbook, sheet1, ms1);
+                //add barcode to .xlsx
+                BarCodeManager.InsertBarcodeToSheet(31, 4, 1, 1, 5, 0, 0, -5, workbook, sheet1, ms1);
 
-                if (ms1 == null)
+                if (ms1 != null)
                 {
                     //the following three statements are required only for HSSF
                     //sheet1.FitToPage = (true);
@@ -113,17 +109,11 @@ namespace RB_LabelsMaker
                     //printSetup.FitWidth = ((short)1);
 
                     //save file
-                    SaveManager.SaveSheet(artNr, workbook);
-                }     
+                    SaveManager.SaveSheet(artNr, workbook, "");
+                }
             }
-            else if (cb40.IsChecked == true)
+            else if (cb8.IsChecked == true)
             {
-                //set up sheet margin
-                sheet1.SetMargin(MarginType.LeftMargin, 0.1);
-                sheet1.SetMargin(MarginType.RightMargin, 0);
-                sheet1.SetMargin(MarginType.TopMargin, 0.1);
-                sheet1.SetMargin(MarginType.BottomMargin, 0);
-
                 // Create a new fonts
                 IFont font1 = workbook.CreateFont();
                 font1.FontHeightInPoints = 24;
@@ -187,8 +177,8 @@ namespace RB_LabelsMaker
                 //Generate barcode           
                 MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 120, 240);
 
-            //add barcode to .xlsx
-            BarCodeManager.InsertBarcodeToSheet(13, 2, 1, 0.8, 10, 10, workbook, sheet1, ms1);
+                //add barcode to .xlsx
+                BarCodeManager.InsertBarcodeToSheet(13, 2, 1, 0.8, 10, 10, workbook, sheet1, ms1);
 
                 if (ms1 != null)
                 {
@@ -197,12 +187,94 @@ namespace RB_LabelsMaker
                     printSetup.PaperSize = ((short)PaperSize.A4_Small);
 
                     //save file
-                    SaveManager.SaveSheet(artNr, workbook);
+                    SaveManager.SaveSheet(artNr, workbook, "_8ks");
                 }
             }
             else if (cb5x5.IsChecked == true)
             {
-                MessageBox.Show("Zatím nefunguje.");
+                //set up sheet margin
+                sheet1.SetMargin(MarginType.LeftMargin, 0.2);
+                sheet1.SetMargin(MarginType.RightMargin, 0.2);
+                sheet1.SetMargin(MarginType.TopMargin, 0.2);
+                sheet1.SetMargin(MarginType.BottomMargin, 0.2);
+
+                // Create a new fonts
+                IFont font1 = workbook.CreateFont();
+                font1.FontHeightInPoints = 11;
+                font1.FontName = "Arial";
+                font1.IsBold = true;
+
+                IFont font2 = workbook.CreateFont();
+                font2.FontHeightInPoints = 9;
+                font2.FontName = "Arial";
+
+                // Set fonts into new styles
+                ICellStyle fontStyle1 = workbook.CreateCellStyle();
+                fontStyle1.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Bottom;
+                fontStyle1.SetFont(font1);
+                ICellStyle fontStyle2 = workbook.CreateCellStyle();
+                fontStyle2.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+                fontStyle2.SetFont(font2);
+
+                // set column width
+                for (int i = 0; i < 4; i++)
+                {
+                    sheet1.SetColumnWidth(i, 6520);
+                }
+
+                //add columns and rows
+                int x = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    IRow row1 = sheet1.CreateRow(x);
+                    row1.Height = 400;
+                    x++;
+
+                    for (int j = 0; j < 4; j++)
+                    {
+                        ICell cell = row1.CreateCell(j);
+                        cell.SetCellValue(artNr);
+                        cell.CellStyle = fontStyle1;
+                    }
+
+                    IRow row2 = sheet1.CreateRow(x);
+                    row2.Height = 350;
+                    x++;
+
+                    for (int j = 0; j < 4; j++)
+                    {
+                        ICell cell = row2.CreateCell(j);
+                        cell.SetCellValue(productInfo);
+                        cell.CellStyle = fontStyle2;
+                    }
+
+                    IRow row3 = sheet1.CreateRow(x);
+                    row3.Height = 2100;
+                    x++;
+
+                    IRow row4 = sheet1.CreateRow(x);
+                    row4.Height = 500;
+                    x++;
+                }
+
+                //Generate barcode           
+                MemoryStream ms1 = BarCodeManager.GenerateBarcode(codeEAN, 120, 300);
+
+                //add barcode to .xlsx
+                BarCodeManager.InsertBarcodeToSheet5x5(19, 4, 1, 1, 5, 0, 0, -15, workbook, sheet1, ms1);
+
+                if (ms1 != null)
+                {
+                    //the following three statements are required only for HSSF
+                    //sheet1.FitToPage = (true);
+                    IPrintSetup printSetup = sheet1.PrintSetup;
+                    printSetup.PaperSize = ((short)PaperSize.A4_Small);
+                    //printSetup.FitHeight = ((short)1);
+                    //printSetup.FitWidth = ((short)1);
+
+                    //save file
+                    SaveManager.SaveSheet(artNr, workbook, "_5x5"); //string at end of filename 
+                }
             }
             else
             {
@@ -211,7 +283,7 @@ namespace RB_LabelsMaker
         }
 
         private void Checked5x5(object sender, RoutedEventArgs e) { cb8.IsChecked = false; cb40.IsChecked = false; ArticleNum.MaxLength = 27; ProductInfo.MaxLength = 35; }
-        private void Checked8(object sender, RoutedEventArgs e) { cb5x5.IsChecked = false; cb40.IsChecked = false; ArticleNum.MaxLength = 3; ProductInfo.MaxLength = 35; }
+        private void Checked8(object sender, RoutedEventArgs e) { cb5x5.IsChecked = false; cb40.IsChecked = false; ArticleNum.MaxLength = 22; ProductInfo.MaxLength = 32; }
         private void Checked40(object sender, RoutedEventArgs e) {cb8.IsChecked = false; cb5x5.IsChecked = false; ArticleNum.MaxLength = 27; ProductInfo.MaxLength = 35; }
     }
 }

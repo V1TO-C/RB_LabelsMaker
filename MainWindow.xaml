@@ -11,16 +11,16 @@
             <TextBlock HorizontalAlignment="Center" Margin="0,31,0,0" Text="ROBIN-BABY" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40" FontWeight="ExtraBold"/>
             <TextBlock HorizontalAlignment="Center" Margin="0,84,0,0" Text="Generátor štítků" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontStyle="Oblique" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="113,137,0,0" Text="Art.Nr., případně BW číslo:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-            <TextBox Name="ArticleNum" Margin="113,161,454,0" Text="Art.Nr." TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="27" FontSize="16" FontWeight="Bold"/>
+            <TextBox Name="ArticleNum" Margin="113,161,400,0" Text="Art.Nr." TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="27" FontSize="16" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="113,192,0,0" Text="Popis produktu:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-            <TextBox Name="ProductInfo" Margin="113,219,454,0" Text="Stillkissen" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="35" FontSize="16" FontWeight="Bold"/>
+            <TextBox Name="ProductInfo" Margin="113,219,400,0" Text="Stillkissen" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="35" FontSize="16" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="113,251,0,0" Text="EAN-13 kod:" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-            <TextBox Name="EANcode" Margin="113,275,454,0" Text="9120110460554" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="13" FontSize="16" FontWeight="Bold"/>
-            <Button HorizontalAlignment="Left" Content="Uložit" Click="Button_Click_save" Width="150" Margin="479,281,0,103" FontSize="16" FontWeight="Bold" Background="SaddleBrown"/>
-            <TextBlock HorizontalAlignment="Left" Margin="687,325,0,0" Text="Verze 0.9" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBox Name="EANcode" Margin="113,275,544,0" Text="9120110460554" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" MaxLength="13" FontSize="16" FontWeight="Bold"/>
+            <Button HorizontalAlignment="Left" Content="Uložit" Click="Button_Click_save" Width="127" Margin="479,275,0,141" FontSize="16" FontWeight="Bold" Background="SaddleBrown"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,111,0,0" Text="Verze 1" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <StackPanel Margin="479,133,114,203">
                 <TextBlock Text="FORMÁT" TextWrapping="Wrap" FontSize="20" FontWeight="ExtraBold"/>
-                <CheckBox x:Name="cb5x5" Checked="Checked5x5" Content="5x5ks" FontWeight="Bold"
+                <CheckBox Name="cb5x5" Checked="Checked5x5" Content="5x5ks" FontWeight="Bold" IsEnabled="True"
                           >
                     <CheckBox.LayoutTransform>
                         <ScaleTransform ScaleX="2" ScaleY="2" />
